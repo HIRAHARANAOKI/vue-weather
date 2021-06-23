@@ -1,24 +1,58 @@
-# vue-chatapp
+# 世界の天気情報を検索するWEBアプリ
 
-## Project setup
+## 環境
+
+- Vue
+- axios
+- OpenWeatherAPI
+
+### 工夫したこと
+
+天気（rain、cloud、clear）によって背景の壁紙が変化するようにしました。
+
+
+下記のようにdataにbackgroundImage: ''を記載
 ```
-yarn install
+export default {
+  data() {
+    return {
+      backgroundImage: '' 
+     }
+  }
+}
 ```
 
-### Compiles and hot-reloads for development
+class名が動的に変化するように記載
 ```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
+  <div id="app"
+    :class="backgroundImageClass"
+    >
 ```
 
-### Lints and fixes files
+computedで条件分岐を記載
 ```
-yarn lint
+    computed: {
+        backgroundImageClass () {
+            if (this.backgroundImage === 'Clouds') {
+                return 'cloud'
+           } else if (this.backgroundImage === 'Clear') {
+                return 'clear'
+           } else if (this.backgroundImage === 'Rain') {
+               return 'rain'
+           } else {
+               return ''
+           }
+        }
+    },
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+
+
+
+
+
+
+
